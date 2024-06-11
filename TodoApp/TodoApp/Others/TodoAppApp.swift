@@ -7,9 +7,16 @@
 
 
 import SwiftUI
-import
+import FirebaseCore
+
+
+
+
 @main
 struct TodoAppApp: App {
+    init(){
+        FirebaseApp.configure()//FireBase enteger ettik
+    }
     var body: some Scene {
         WindowGroup {
             MainView()
