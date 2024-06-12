@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct BigButton: View {
+    
+    let title: String
+    
+    let action : () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button (action : action,
+            
+         label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 5)
+                    .foregroundColor(.blue)
+                    .shadow(radius: 15)
+                Text(title)
+                    .foregroundStyle(.white)
+            }
+        }).frame(height: 50)
+            .padding(.horizontal)//yanlardan taşmasın diye
     }
 }
 
 #Preview {
-    BigButton()
+    BigButton(title: "Örnek Buton Title'ı", action: {})
 }

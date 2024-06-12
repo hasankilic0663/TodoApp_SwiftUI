@@ -23,6 +23,9 @@ struct LoginView: View {
                 Form{
                     
                     TextField("Email Adresiniz", text: $email)//email değernde saklanacak
+                        .autocorrectionDisabled()
+                        .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)// baş harfini buyuk yaparak baslatmıyor !!
+                    
                     SecureField("Şifreniz", text: $password)
                 }
                 .frame(height: 150)
@@ -47,7 +50,8 @@ struct LoginView: View {
                 
                 VStack{
                     Text("Buralarda yeni misin?")
-                    NavigationLink("Yeni Hesap oluştur!",destination: RegisterView())
+                    NavigationLink("Yeni Hesap oluştur!",
+                                   destination: RegisterView())
                 }
                 .padding(.bottom,150)
             }

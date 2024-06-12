@@ -23,26 +23,27 @@ struct RegisterView: View {
                 Form{
                     Section(header: Text("Kayıt Formu")) {
                         TextField("Tam Adınız",text: $name)
+                            .autocorrectionDisabled()//otomatik tamamlamayı kapattık
                         TextField("Email Şifreniz",text: $email)
+                            .autocorrectionDisabled()
+                            .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)// baş harfini buyuk yaparak baslatmıyor !!
+                        
                         SecureField("Şifreniz",text: $password)
                     }
                 }
                 .frame(height: 200)//formu kucultuyoz
-                Button {
-                    
-                    
-                } label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(.blue)
-                            .shadow(radius: 15)
-                        Text("Kayıt ol")
-                            .foregroundStyle(.white)
-                    }
-                }.frame(height: 50)
-                    .padding(.horizontal)//yanlardan taşmasın diye
+                
+                BigButton(title: "Kayıt ol", action: {})
+                
                 Spacer()
                 //Footer
+                
+                VStack{
+                    Text("Zaten bizden birisi misin?")
+                    NavigationLink("Giriş Yap!",
+                                   destination: LoginView())
+                }
+                .padding(.bottom,150)
             }
         }
     }
