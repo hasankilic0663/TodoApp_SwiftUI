@@ -9,8 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State var email = ""
-    @State var password = ""
+//    @State var email = ""
+//    @State var password = ""
+    @StateObject var viewModel = LoginViewViewModel()
+    
+    
     var body: some View {
         NavigationStack{
             VStack{
@@ -21,19 +24,22 @@ struct LoginView: View {
                 
                 //form-email, Şifre ve button
                 Form{
-                    
-                    TextField("Email Adresiniz", text: $email)//email değernde saklanacak
+                    if !viewModel.errorMessage.isEmpty{//errormesage bos degılse
+                        Text(viewModel.errorMessage)
+                            .foregroundStyle(.red)
+                    }
+                    TextField("Email Adresiniz", text: $viewModel.email)//email değernde saklanacak
                         .autocorrectionDisabled()
                         .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)// baş harfini buyuk yaparak baslatmıyor !!
                     
-                    SecureField("Şifreniz", text: $password)
+                    SecureField("Şifreniz", text: $viewModel.password)
                 }
                 .frame(height: 150)
                     
-                Button {
+                Button (action : {
+                    viewModel.login()
                     
-                    
-                } label: {
+                }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(.blue)
@@ -41,14 +47,16 @@ struct LoginView: View {
                         Text("Giriş Yap")
                             .foregroundStyle(.white)
                     }
-                }.frame(height: 50)
+                })
+                .frame(height: 50)
                     .padding(.horizontal)//yanlardan taşmasın diye
                 Spacer()
-
+                    .padding(.bottom,15)
+                
                 
                 //footer - Hesabınız yokmu
                 
-                VStack{
+                      VStack{
                     Text("Buralarda yeni misin?")
                     NavigationLink("Yeni Hesap oluştur!",
                                    destination: RegisterView())

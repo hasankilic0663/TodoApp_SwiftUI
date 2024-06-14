@@ -38,12 +38,12 @@ struct RegisterView: View {
                 Spacer()
                 //Footer
                 
-                VStack{
-                    Text("Zaten bizden birisi misin?")
-                    NavigationLink("Giriş Yap!",
-                                   destination: LoginView())
-                }
-                .padding(.bottom,150)
+//                VStack{ //Gerek olmadıgını dusunduk zate sol usttev gerı tusu oluyor sebebı ıse navıgatıon stack sayesınde gerı tusu gozukuyor
+//                    Text("Zaten bizden birisi misin?")
+//                    NavigationLink("Giriş Yap!",
+//                                   destination: LoginView())
+//                }
+//                .padding(.bottom,150)
             }
         }
     }
