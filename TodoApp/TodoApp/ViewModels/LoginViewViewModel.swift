@@ -15,6 +15,15 @@
         init(){}
             
             func login(){// guardda yazan -> email bosmu degılmı bak bossa return et değilse degılse  boslukları sil
+                guard validate() else{ // else olması durumunda return edıp cıkar
+                    
+                    return
+                }
+                
+            }
+            
+            
+            func validate() -> Bool{// email şifre yazdugunda gecerlı bbır sıfre ve emaılmı gırdı vb bunları butrada kontrıl edıyoruz
                 
                 errorMessage = ""
                 
@@ -22,15 +31,14 @@
                       !password.trimmingCharacters(in: .whitespaces).isEmpty
                 else{
                     errorMessage = "Lütfen tüm alanları doldurun!"
-                    return
+                    return false
                 }
-            }
-            
-            
-            func validate(){// email şifre yazdugunda gecerlı bbır sıfre ve emaılmı gırdı vb bunları butrada kontrıl edıyoruz
                 
-                
-            
+                guard email.contains("@") && email.contains(".") else{//email içinde @ ve . varmı dıye bakıyo
+                    errorMessage = "Lütfen geçerli bir email adresi giriniz"
+                    return false
+                }
+            return true // hatalar varsa false döndürsün yoksa true dondursun
             
         }
     }

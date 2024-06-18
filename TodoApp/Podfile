@@ -1,9 +1,10 @@
-platform :ios, '10.0'
+platform :ios, '13.0'
 
 target 'TodoApp' do
   use_frameworks!
 
   # Firebase pods
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 end
 

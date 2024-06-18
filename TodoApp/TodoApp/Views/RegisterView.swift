@@ -9,9 +9,11 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State var name = ""
-    @State var email = ""
-    @State var password = ""
+//    @State var name = ""
+//    @State var email = ""
+//    @State var password = ""
+    
+    @StateObject var viewModel = RegisterViewViewModel()
     
     
     var body: some View {
@@ -22,18 +24,24 @@ struct RegisterView: View {
                 //Register formu
                 Form{
                     Section(header: Text("Kayıt Formu")) {
-                        TextField("Tam Adınız",text: $name)
+                        if !viewModel.errorMessage.isEmpty{//errormesage bos degılse
+                            Text(viewModel.errorMessage)
+                                .foregroundStyle(.red)
+                        }
+                        TextField("Tam Adınız",text: $viewModel.name)
                             .autocorrectionDisabled()//otomatik tamamlamayı kapattık
-                        TextField("Email Şifreniz",text: $email)
+                        TextField("Email Şifreniz",text: $viewModel.email)
                             .autocorrectionDisabled()
                             .autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/)// baş harfini buyuk yaparak baslatmıyor !!
                         
-                        SecureField("Şifreniz",text: $password)
+                        SecureField("Şifreniz",text: $viewModel.password)
                     }
                 }
-                .frame(height: 200)//formu kucultuyoz
+                .frame(height: 250)//formu kucultuyoz
                 
-                BigButton(title: "Kayıt ol", action: {})
+                BigButton(title: "Kayıt ol", action: {
+                    viewModel.register() 
+                })
                 
                 Spacer()
                 //Footer

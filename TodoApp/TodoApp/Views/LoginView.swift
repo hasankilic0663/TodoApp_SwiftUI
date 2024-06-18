@@ -34,22 +34,26 @@ struct LoginView: View {
                     
                     SecureField("Şifreniz", text: $viewModel.password)
                 }
-                .frame(height: 150)
-                    
-                Button (action : {
+                .frame(height: 200)
+                
+                BigButton(title: "Giriş Yap"){
                     viewModel.login()
-                    
-                }, label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 5)
-                            .foregroundColor(.blue)
-                            .shadow(radius: 15)
-                        Text("Giriş Yap")
-                            .foregroundStyle(.white)
-                    }
-                })
-                .frame(height: 50)
-                    .padding(.horizontal)//yanlardan taşmasın diye
+                }
+                 // butonu pasif etmemizin sebebi Bigbuton direk bunun işlevin igörüyo
+//                Button (action : {
+//                    
+//                    
+//                }, label: {
+//                    ZStack {
+//                        RoundedRectangle(cornerRadius: 5)
+//                            .foregroundColor(.blue)
+//                            .shadow(radius: 15)
+//                        Text("Giriş Yap")
+//                            .foregroundStyle(.white)
+//                    }
+//                })
+//                .frame(height: 50)
+//                    .padding(.horizontal)//yanlardan taşmasın diye
                 Spacer()
                     .padding(.bottom,15)
                 
