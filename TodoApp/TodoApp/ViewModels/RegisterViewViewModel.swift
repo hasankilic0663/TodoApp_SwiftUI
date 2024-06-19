@@ -23,7 +23,7 @@ class RegisterViewViewModel : ObservableObject{
             return
         }
            
-        Auth.auth().createUser(withEmail: email, password: password){ [weak self] result, //week self i arastırıp ogren
+        Auth.auth().createUser(withEmail: email, password: password){ [wea k self] result, //week self i arastırıp ogren
             error in
             
             guard let userId = result?.user.uid else{// resultun uıd si yoksa return et
