@@ -4,7 +4,7 @@
 //
 //  Created by Hasan on 10.06.2024.
 //
-
+import FirebaseFirestore
 import Foundation
 import FirebaseAuth
 
@@ -23,7 +23,7 @@ class RegisterViewViewModel : ObservableObject{
             return
         }
            
-        Auth.auth().createUser(withEmail: email, password: password){ [wea k self] result, //week self i arastırıp ogren
+        Auth.auth().createUser(withEmail: email, password: password){ [weak self] result, //week self i arastırıp ogren
             error in
             
             guard let userId = result?.user.uid else{// resultun uıd si yoksa return et
@@ -38,7 +38,12 @@ class RegisterViewViewModel : ObservableObject{
     }
     
     private func insertUserRecord(id : String){//firestore a istek atmak ıcın
+        let newUser = User(id: id, name: name, email: email, joined: Date().timeIntervalSince1970)
         
+        let db = Firestore.firestore()
+        db.collection("users") // db içerisinde koleksyıon users var
+            .document(id)//dökuman olustur yada var olan kullan
+            .setData(newUser.asDictonary())//arkada dictonarye cevırdı
     }
 
     
