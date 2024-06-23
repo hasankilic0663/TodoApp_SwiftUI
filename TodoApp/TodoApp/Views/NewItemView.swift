@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct NewItemView: View {
+    
+    @Binding var newItemPresented: Bool// binding yapmamızın sebebi değişkeni değiştirmek yani . newitemview false cevırırsek todoloısttekı degıskende false donecek . ikisini birllikte aynı kontol edıyo gıbı esıtlıyo yani
+    @StateObject var viewModel = NewItemViewViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("Yeni Görev")
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .bold()
+                .padding(.top,100)
+            Form{
+                TextField("Başlık",text: $viewModel.title)
+                DatePicker("Bitiş tarihi", selection: $viewModel.dueDate)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                
+                BigButton(title: "Kaydet") {
+                    viewModel.save()
+                    newItemPresented=false
+                }
+            }
+            
+        }
     }
 }
 
 #Preview {
-    NewItemView()
+    NewItemView(newItemPresented: Binding(get: {
+        return true
+    }, set: { _ in
+        
+    }))
 }

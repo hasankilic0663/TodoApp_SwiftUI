@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+class ToDoListViewViewModel: ObservableObject{
+    @Published var showingNewItemView = false // cunku sayfa acıldıgında kapalı olarak gelmesini istiyoruz
+    
+    init(){}
+}

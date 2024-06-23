@@ -18,10 +18,29 @@ struct MainView: View {
     
     var body: some View {
         if viewModel.isSignedIn , !viewModel.currenUserId.isEmpty {// login oldumu ve currentuserıd sı doluysa
-            ToDoListView()
+            
+            
+            accountView
+            
+            
         }
         else{
             LoginView()
+        }
+    }
+    
+    @ViewBuilder
+    var accountView: some View{
+        TabView{
+            ToDoListView(userId: viewModel.currenUserId)//todo list viewe  idye göre gonderıyo o iddeki logindeki kişinin gorevlerını gostermek ıcın yapıyoruz
+                .tabItem {
+                    Label("Görevler",systemImage: "house")
+                }
+            ProfileView()
+                .tabItem {
+                    Label("Profil", systemImage: "person.circle")
+                }
+
         }
     }
 }
