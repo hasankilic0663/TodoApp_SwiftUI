@@ -33,6 +33,8 @@ class RegisterViewViewModel : ObservableObject{
             
             //insert metodu cagırılacak
             
+            self?.insertUserRecord(id: userId)
+            
         }// firebase e iletiliyo
             
     }
