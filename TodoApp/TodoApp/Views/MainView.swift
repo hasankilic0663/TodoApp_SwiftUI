@@ -30,11 +30,11 @@ struct MainView: View {
     }
     
     @ViewBuilder
-    var accountView: some View{
+    var accountView: some View{//view nesnesı olusturduk
         TabView{
             ToDoListView(userId: viewModel.currenUserId)//todo list viewe  idye göre gonderıyo o iddeki logindeki kişinin gorevlerını gostermek ıcın yapıyoruz
                 .tabItem {
-                    Label("Görevler",systemImage: "house")
+                        Label("Görevler",systemImage: "house")
                 }
             ProfileView()
                 .tabItem {

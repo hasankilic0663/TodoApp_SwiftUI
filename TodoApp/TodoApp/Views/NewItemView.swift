@@ -23,9 +23,18 @@ struct NewItemView: View {
                     .datePickerStyle(GraphicalDatePickerStyle())
                 
                 BigButton(title: "Kaydet") {
-                    viewModel.save()
-                    newItemPresented=false
+                    if viewModel.canSave{
+                        viewModel.save()
+                        newItemPresented=false
+                    } else{
+                        viewModel.showAlert = true
+                    }
+                    
+                    
                 }
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text("Hata"), message: Text("Lütfen verilerin doğruluğunu kontrol edin!"))
             }
             
         }

@@ -15,7 +15,7 @@ import FirebaseCore
 @main
 struct TodoAppApp: App {
     init(){
-        FirebaseApp.configure()//FireBase enteger ettik
+        FirebaseApp.configure()//FireBase entegre ettik
     }
     var body: some Scene {
         WindowGroup {

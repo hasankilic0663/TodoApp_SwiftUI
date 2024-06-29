@@ -5,6 +5,7 @@
     //  Created by Hasan on 10.06.2024.
     //
 
+import FirebaseAuth
     import Foundation
 
     class LoginViewViewModel:ObservableObject{//Gözlemleneilir object MVVM
@@ -19,6 +20,9 @@
                     
                     return
                 }
+                Auth.auth().signIn(withEmail: email, password: password) 
+                    
+                
                 
             }
             
