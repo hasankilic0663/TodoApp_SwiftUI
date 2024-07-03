@@ -25,12 +25,13 @@ class ProfileViewViewModel : ObservableObject{
             .document(userId).getDocument{ [weak self] snapshot , error in
                 guard let data = snapshot?.data(), error == nil else{
                     return
+                    
+                }
                 
             }
-                Dis
-    }
-    
-    func logout(){
         
+        func logout(){
+            
+        }
     }
 }
