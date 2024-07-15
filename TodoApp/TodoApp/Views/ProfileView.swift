@@ -15,34 +15,60 @@ struct ProfileView: View {
     var body: some View {
         NavigationView{
             VStack{
-               Image(systemName: "person.circle")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundStyle(.blue)
-                    .frame(width: 125,height: 125)
                 
-                VStack{
-                    HStack{
-                        Text("İsim: ")
-                        Text("Hasan Hüseyin KILIÇ")
-                    }
+                if let user = viewModel.user{
+                    profile(user : user)
+                } else{
+                    Text("Profil yükleniyor...")
                 }
+                
+                
                 // Logout işlemi yapılacak
                 
-                BigButton(title: "Çıkış Yap", action: viewModel.logout())
+                BigButton(title: "Çıkış yap "){ viewModel.logout()                }
             }
-            .navigationTitle("Profil")
-//            .toolbar{
-//                Button {
-//                    //Sheet acma kodları
-//                } label: {
-//                    Image(systemName: "plus")
-//                }
-//
-//            }
+                .navigationTitle("Profil")
+                //            .toolbar{
+                //                Button {
+                //                    //Sheet acma kodları
+                //                } label: {
+                //                    Image(systemName: "plus")
+                //                }
+                //
+                //            }
+            }
+        .onAppear{
+            viewModel.fetchUser()//fetchuserı getırıyo ve bızım datalarımız yuklenıp gelıyop
+            
+            
+            }
+        }
+    
+    @ViewBuilder
+    func profile(user:User) -> some View{
+        Image(systemName: "person.circle")
+            .resizable()
+            
+            .aspectRatio(contentMode: .fit)
+            .foregroundStyle(.black)
+            .frame(width: 125,height: 125)
+        
+        VStack{
+            HStack{
+                Text("İsim: ")
+                Text(user.name)
+            }
+            HStack{
+                Text("Email: ")
+                Text(user.email)
+            }
+            HStack{
+                Text("Kayıt Tarihi: ")
+                Text("\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated , time : .shortened))")
+            }
         }
     }
-}
+    }
 
 #Preview {
     ProfileView()
